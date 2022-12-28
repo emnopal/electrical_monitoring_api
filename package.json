@@ -1,0 +1,26 @@
+{
+  "name": "electrical_monitoring",
+  "version": "1.0.0",
+  "description": "Monitoring Dashboard for Electrical Monitoring App",
+  "main": "main.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon -r dotenv/config ./main.js",
+    "lint": "eslint ./",
+    "lint-init": "npm init @eslint/config"
+  },
+  "author": "mnaufal0999@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "firebase": "^9.15.0",
+    "firebase-admin": "^11.4.1"
+  },
+  "devDependencies": {
+    "eslint": "^8.30.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "nodemon": "^2.0.20"
+  }
+}
