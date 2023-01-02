@@ -1,25 +1,14 @@
-import { electricalMonitorData } from "./src/controller/electricalMonitorData.js";
-import { flattenObj } from "./src/utils/flattenObj.js";
-import { QueryObj } from './src/utils/queryObj.js';
-import { write } from "./src/utils/writeObj.js";
+import express from "express";
 
-const electricData = await electricalMonitorData();
-const electricDataFlatten = flattenObj(electricData, 'array');
-// write(electricData);
-// write(electricDataFlatten);
-console.log(electricDataFlatten);
+const app = express();
+app.set('view engine', 'ejs');
 
-// const electricDataFlatten = flattenObj(electricData);
-// console.log(electricDataFlatten);
+app.get("/", async (req, res) => {
+	res.render('pages/index', {
+        output: output
+    });
+});
 
-const electricDataQueryObj = new QueryObj(electricDataFlatten);
-console.log(electricDataQueryObj.getValue('Current'))
-console.log(electricDataQueryObj.getHighestObjByKey('Current'))
-console.log(electricDataQueryObj.getLowestObjByKey('Current'))
-console.log(electricDataQueryObj.getHighestValueByKey('Current'))
-console.log(electricDataQueryObj.getLowestValueByKey('Current'))
-
-// console.log(electricDataQueryObj.sortObj("Power Factor"))
-
-// const newElectricDataQueryObj = new QueryObj(electricDataQueryObj.sortObj("Current"))
-// console.log(newElectricDataQueryObj.getValue("Current"))
+app.listen(3000, () => {
+	console.log("Server is up on port 3000");
+});

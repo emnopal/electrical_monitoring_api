@@ -3,6 +3,9 @@ export class QueryObj {
 		this.obj = obj;
 	}
 
+	/*
+	Get the key of object, only works if you don't convert firebase database to array
+	*/
 	getKeys() {
 		if (Array.isArray(this.obj)) {
 			throw "Must be Object";
@@ -10,15 +13,60 @@ export class QueryObj {
 		return Object.keys(this.obj);
 	}
 
+	/*
+	Only get one value
+	*/
 	getValue(key, order) {
         let sortedObj = this.obj;
 		if (Array.isArray(sortedObj)) {
-            if (order) {
-                sortedObj = this.sortObj(key, order);
-            }
+			sortedObj = this.sortObj(key, order);
 			return sortedObj.map((a) => a[key]);
 		}
 		return Object.values(sortedObj).map((a) => a[key]);
+	}
+
+	/*
+	Can get multiple value and return as object
+	*/
+	getValueObj(keys, orderBy, orderSort) {
+		return this.getValueAll(keys, orderBy, orderSort);
+	}
+
+	/*
+	Can get multiple value and return as array
+	*/
+	getValueArr(keys, orderBy, orderSort) {
+		return this.getValueAll(keys, orderBy, orderSort, "array");
+	}
+
+	/*
+	Get value function wrapper
+	*/
+	getValueAll(keys, orderBy, orderSort, returnAs) {
+		let isStr = 0;
+		if (typeof keys === 'string' || keys instanceof String) {
+			keys = [keys]
+			isStr = 1;
+		}
+		const data = this.sortObj(orderBy ?? "timestamp", orderSort);
+		if (returnAs === 'array') {
+			const result = data.map((d) => {
+				return keys.map((k) => {
+					return d[k];
+				});
+			});
+			if (isStr === 1) {
+				return result.flat(1);
+			}
+			return result;
+		}
+		return data.map((d) => {
+			const result = {}
+			keys.map((k) => {
+				result[k] = d[k];
+			});
+			return result;
+		});
 	}
 
 	sortObj(key, order) {
@@ -28,7 +76,7 @@ export class QueryObj {
 		if (order === "desc") {
 			x_mult = -1; y_mult = 1;
 		}
-		return data.sort((a, b) => x_mult * a[key] + y_mult * b[key]);
+		return data.sort((a, b) => a[key] < b[key] ? x_mult : y_mult);
 	}
 
     getHighestObjByKey(key) {
@@ -46,4 +94,5 @@ export class QueryObj {
     getLowestValueByKey(key) {
         return this.getLowestObjByKey(key)[key];
     }
+
 }
