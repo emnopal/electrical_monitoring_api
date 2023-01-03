@@ -1,14 +1,10 @@
-import express from "express";
+import express from 'express';
+import {config} from './src/configs/server.js';
+import router from './src/routes/electricalMonitoringRoute.js';
 
-const app = express();
-app.set('view engine', 'ejs');
+const app = config(express(), router);
+app.set('port', 2023);
 
-app.get("/", async (req, res) => {
-	res.render('pages/index', {
-        output: output
-    });
-});
-
-app.listen(3000, () => {
-	console.log("Server is up on port 3000");
+app.listen(app.get('port'), () => {
+    console.log(`server is running on: http://localhost:${app.get('port')}`);
 });

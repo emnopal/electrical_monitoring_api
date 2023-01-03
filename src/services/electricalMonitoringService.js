@@ -80,11 +80,11 @@ export class ElectricalMonitoringService {
 	}
 
     getHighestObjByKey(key) {
-        return this.sortObj(key).at(-1);
+        return this.sortObj(key)[0];
     }
 
     getLowestObjByKey(key) {
-        return this.sortObj(key, "desc").at(-1);
+        return this.sortObj(key, "desc")[0];
     }
 
     getHighestValueByKey(key) {

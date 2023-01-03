@@ -15,7 +15,8 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "firebase": "^9.15.0",
-    "firebase-admin": "^11.4.1"
+    "firebase-admin": "^11.4.1",
+    "@firebase/database-compat": "0.1.2"
   },
   "devDependencies": {
     "eslint": "^8.30.0",

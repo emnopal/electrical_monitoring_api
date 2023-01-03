@@ -18,7 +18,11 @@ export const getValue = async (request, response) => {
 
     try {
         const data = electricDataQueryObj.getValue(key, order);
-        return successResponse({response, data: data})
+        return successResponse({response, data: {
+            'keys': key,
+            'sort': order,
+            'value': data
+        }})
     } catch(error) {
         return failResponse({response, data: error})
     }
@@ -29,8 +33,14 @@ export const getValues = async (request, response) => {
     const { keys, order, sort, returnAs } = request.query
 
     try {
-        const data = electricDataQueryObj.getValueAll(keys, order, sort, returnAs ?? 'array');
-        return successResponse({response, data: data})
+        const data = electricDataQueryObj.getValueAll(keys.split(","), order, sort, returnAs ?? 'array');
+        return successResponse({response, data: {
+            'keys': keys,
+            'order': order,
+            'sort': sort,
+            'returnAs': returnAs,
+            'value': data
+        }})
     } catch(error) {
         return failResponse({response, data: error})
     }
@@ -44,10 +54,18 @@ export const getHighestData = async (request, response) => {
     try {
         if (returnAs === 'string' || returnAs === 'integer' || returnAs === 'only' || returnAs === 'one' || returnAs === 'value') {
             const data = electricDataQueryObj.getHighestValueByKey(key);
-            return successResponse({response, data: data})
+            return successResponse({response, data: {
+                'keys': key,
+                'returnAs': returnAs,
+                'value': data
+            }})
         } else {
             const data = electricDataQueryObj.getHighestObjByKey(key);
-            return successResponse({response, data: data})
+            return successResponse({response, data: {
+                'keys': key,
+                'returnAs': returnAs,
+                'value': data
+            }})
         }
     } catch(error) {
         return failResponse({response, data: error})
@@ -62,10 +80,18 @@ export const getLowestData = async (request, response) => {
     try {
         if (returnAs === 'string' || returnAs === 'integer' || returnAs === 'only' || returnAs === 'one' || returnAs === 'value') {
             const data = electricDataQueryObj.getLowestValueByKey(key);
-            return successResponse({response, data: data})
+            return successResponse({response, data: {
+                'keys': key,
+                'returnAs': returnAs,
+                'value': data
+            }})
         } else {
             const data = electricDataQueryObj.getLowestObjByKey(key);
-            return successResponse({response, data: data})
+            return successResponse({response, data: {
+                'keys': key,
+                'returnAs': returnAs,
+                'value': data
+            }})
         }
     } catch(error) {
         return failResponse({response, data: error})
