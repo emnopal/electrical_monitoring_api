@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "nodemon --ignore ./tmp/ -r dotenv/config ./main.js",
+    "start-deploy": "node --ignore ./tmp/ -r dotenv/config ./main.js",
     "lint": "eslint ./",
     "lint-init": "npm init @eslint/config"
   },
@@ -16,8 +17,7 @@
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "firebase": "^9.15.0",
-    "firebase-admin": "^11.4.1",
-    "firebase-functions": "^4.1.1"
+    "firebase-admin": "^11.4.1"
   },
   "devDependencies": {
     "eslint": "^8.30.0",
