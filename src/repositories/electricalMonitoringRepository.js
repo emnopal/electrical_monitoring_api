@@ -1,8 +1,8 @@
 import { get, child } from "firebase/database";
-import { dbRef as db } from "../databases/database.js";
+import { dbRef as db } from "../entities/electricalMonitoringEntity.js";
 import { UID as UserID } from "../configs/environment.js";
 import { flattenObj } from "../utils/flattenObj.js";
-import { QueryObj } from '../utils/queryObj.js';
+import { ElectricalMonitoringService } from '../services/electricalMonitoringService.js';
 
 export const electricalMonitoringData = async () => {
 	try {
@@ -18,4 +18,4 @@ export const electricalMonitoringData = async () => {
 
 export const electricData = await electricalMonitoringData();
 export const electricDataFlatten = flattenObj(electricData, 'array');
-export const electricDataQueryObj = new QueryObj(electricDataFlatten);
+export const electricDataQueryObj = new ElectricalMonitoringService(electricDataFlatten);

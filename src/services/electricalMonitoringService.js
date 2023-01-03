@@ -1,4 +1,4 @@
-export class QueryObj {
+export class ElectricalMonitoringService {
 	constructor(obj) {
 		this.obj = obj;
 	}

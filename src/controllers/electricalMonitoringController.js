@@ -1,5 +1,5 @@
-import { electricDataQueryObj, electricDataFlatten } from "../models/electricalMonitoringData";
-import { failResponse, successResponse } from "../helpers/helperResponse";
+import { electricDataQueryObj, electricDataFlatten } from "../repositories/electricalMonitoringRepository.js";
+import { failResponse, successResponse } from "../helpers/helperResponse.js";
 
 // => http://localhost/value
 export const getAllValue = async (request, response) => {
