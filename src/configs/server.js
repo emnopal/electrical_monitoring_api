@@ -1,4 +1,5 @@
 import {json, urlencoded} from 'express';
+import createError from 'http-errors';
 
 export const config = (app, routes) => {
     app.use(json());

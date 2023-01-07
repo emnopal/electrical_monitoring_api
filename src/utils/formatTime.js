@@ -1,9 +1,9 @@
 export const formatTime = (time) => {
-	const dtFormat = new Intl.DateTimeFormat("id-ID", {
-		dateStyle: 'short',
+    const dtFormat = new Intl.DateTimeFormat('id-ID', {
+        dateStyle: 'short',
         timeStyle: 'medium',
-		timeZone: "UTC",
-	});
+        timeZone: 'UTC',
+    });
 
-	return dtFormat.format(new Date(time));
+    return dtFormat.format(new Date(time));
 };

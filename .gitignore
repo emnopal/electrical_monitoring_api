@@ -4,3 +4,5 @@ firebase
 .DS_Store
 tmp
 _tmp.js
+.idea
+.vscode

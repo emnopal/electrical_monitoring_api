@@ -6,14 +6,12 @@ export const successResponse = (
         message = 'Success',
         statusCode = 200,
     },
-) => {
-    return response.status(statusCode).json({
-        success: true,
-        status: status,
-        message: message,
-        data: data,
-    });
-};
+) => response.status(statusCode).json({
+    success: true,
+    status,
+    message,
+    data,
+});
 
 export const failResponse = (
     {
@@ -23,11 +21,9 @@ export const failResponse = (
         message = 'Fail',
         statusCode = 500,
     },
-) => {
-    return response.status(statusCode).json({
-        success: false,
-        status: status,
-        message: message,
-        data: data,
-    });
-};
+) => response.status(statusCode).json({
+    success: false,
+    status,
+    message,
+    data,
+});

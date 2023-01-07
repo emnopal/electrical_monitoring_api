@@ -1,11 +1,11 @@
-import { electricDataQueryObj, electricDataFlatten } from "../repositories/electricalMonitoringRepository.js";
-import { failResponse, successResponse } from "../helpers/helperResponse.js";
+import { electricDataQueryObj, electricDataFlatten } from '../repositories/electricalMonitoringRepository.js';
+import { failResponse, successResponse } from '../helpers/helperResponse.js';
 
 // => http://localhost/value
 export const getAllValue = async (request, response) => {
     try {
         const data = electricDataFlatten;
-        return successResponse({response, data: data})
+        return successResponse({response, data})
     } catch(error) {
         return failResponse({response, data: error})
     }
@@ -33,7 +33,7 @@ export const getValues = async (request, response) => {
     const { keys, order, sort, returnAs } = request.query
 
     try {
-        const data = electricDataQueryObj.getValueAll(keys.split(","), order, sort, returnAs ?? 'array');
+        const data = electricDataQueryObj.getValueAll(keys.split(','), order, sort, returnAs ?? 'array');
         return successResponse({response, data: {
             'keys': keys,
             'order': order,
@@ -59,14 +59,14 @@ export const getHighestData = async (request, response) => {
                 'returnAs': returnAs,
                 'value': data
             }})
-        } else {
-            const data = electricDataQueryObj.getHighestObjByKey(key);
-            return successResponse({response, data: {
-                'keys': key,
-                'returnAs': returnAs,
-                'value': data
-            }})
-        }
+        } 
+        const data = electricDataQueryObj.getHighestObjByKey(key);
+        return successResponse({response, data: {
+            'keys': key,
+            'returnAs': returnAs,
+            'value': data
+        }})
+        
     } catch(error) {
         return failResponse({response, data: error})
     }
@@ -85,14 +85,14 @@ export const getLowestData = async (request, response) => {
                 'returnAs': returnAs,
                 'value': data
             }})
-        } else {
-            const data = electricDataQueryObj.getLowestObjByKey(key);
-            return successResponse({response, data: {
-                'keys': key,
-                'returnAs': returnAs,
-                'value': data
-            }})
-        }
+        } 
+        const data = electricDataQueryObj.getLowestObjByKey(key);
+        return successResponse({response, data: {
+            'keys': key,
+            'returnAs': returnAs,
+            'value': data
+        }})
+        
     } catch(error) {
         return failResponse({response, data: error})
     }

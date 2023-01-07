@@ -1,4 +1,7 @@
-import { config } from "dotenv";
+/* eslint prefer-destructuring: 0 */
+
+import { config } from 'dotenv';
+
 config();
 
 export const apiKey = process.env.apiKey;

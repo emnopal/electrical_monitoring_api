@@ -1,4 +1,4 @@
-import { formatTime } from "./formatTime.js";
+import { formatTime } from './formatTime.js';
 
 export const flattenObj = (obj, as) => {
     const newObj = {};
