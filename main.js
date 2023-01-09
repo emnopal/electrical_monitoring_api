@@ -7,5 +7,5 @@ export const app = config(express(), router);
 app.set('port', 2023);
 
 app.listen(app.get('port'), () => {
-    console.log(`server is running on: http://localhost:${app.get('port')}`);
+    console.log(`server is running on: http://localhost:${app.get('port')}`); // eslint-disable-line
 });

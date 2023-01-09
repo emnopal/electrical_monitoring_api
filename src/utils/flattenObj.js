@@ -1,3 +1,5 @@
+/* eslint no-underscore-dangle: 0 dot-notation: 0 */
+
 import { formatTime } from './formatTime.js';
 
 export const flattenObj = (obj, as) => {
@@ -6,8 +8,8 @@ export const flattenObj = (obj, as) => {
     Object.keys(obj).forEach((key) => {
         Object.keys(obj[key]).forEach((keyKey) => {
 
-            let _keyValueTemp = obj[key][keyKey]
-            let _keyTemp = _keyValueTemp['timestamp']
+            const _keyValueTemp = obj[key][keyKey]
+            const _keyTemp = _keyValueTemp['timestamp']
 
             newObj[_keyTemp] = obj[key][keyKey]
             newObj[_keyTemp]['Current'] = parseFloat(_keyValueTemp['Current'])
@@ -18,6 +20,7 @@ export const flattenObj = (obj, as) => {
             newObj[_keyTemp]['Total Price'] = parseFloat(_keyValueTemp['Total Price'])
             newObj[_keyTemp]['Voltage'] = parseFloat(_keyValueTemp['Voltage'])
             newObj[_keyTemp]['readable_timestamp'] = formatTime(_keyValueTemp['timestamp'] * 1000)
+
         })
     })
 

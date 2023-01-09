@@ -1,7 +1,7 @@
 export class ElectricalMonitoringService {
     constructor(obj) {
         this.obj = obj;
-    }
+    };
 
     /*
     Get the key of object, only works if you don't convert firebase database to array
@@ -11,7 +11,7 @@ export class ElectricalMonitoringService {
             throw 'Must be Object';
         }
         return Object.keys(this.obj);
-    }
+    };
 
     /*
     Only get one value
@@ -23,21 +23,21 @@ export class ElectricalMonitoringService {
             return sortedObj.map((a) => a[key]);
         }
         return Object.values(sortedObj).map((a) => a[key]);
-    }
+    };
 
     /*
     Can get multiple value and return as object
     */
     getValueObj(keys, orderBy, orderSort) {
         return this.getValueAll(keys, orderBy, orderSort);
-    }
+    };
 
     /*
     Can get multiple value and return as array
     */
     getValueArr(keys, orderBy, orderSort) {
         return this.getValueAll(keys, orderBy, orderSort, 'array');
-    }
+    };
 
     /*
     Get value function wrapper
@@ -58,12 +58,12 @@ export class ElectricalMonitoringService {
         }
         return data.map((d) => {
             const result = {}
-            keys.map((k) => {
+            keys.map((k) => { // eslint-disable-line
                 result[k] = d[k];
             });
             return result;
         });
-    }
+    };
 
     sortObj(key, order) {
         const data = this.obj;
@@ -75,22 +75,22 @@ export class ElectricalMonitoringService {
             yMult = 1;
         }
         return data.sort((a, b) => a[key] < b[key] ? xMult : yMult);
-    }
+    };
 
     getHighestObjByKey(key) {
         return this.sortObj(key)[0];
-    }
+    };
 
     getLowestObjByKey(key) {
         return this.sortObj(key, 'desc')[0];
-    }
+    };
 
     getHighestValueByKey(key) {
         return this.getHighestObjByKey(key)[key];
-    }
+    };
 
     getLowestValueByKey(key) {
         return this.getLowestObjByKey(key)[key];
-    }
+    };
 
-}
+};

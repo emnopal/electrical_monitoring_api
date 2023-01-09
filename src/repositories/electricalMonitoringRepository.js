@@ -1,3 +1,5 @@
+/*eslint require-await: "error"*/
+
 import {get, child} from 'firebase/database';
 import {dbRef as db} from '../entities/electricalMonitoringEntity.js';
 import {UID as UserID} from '../configs/environment.js';

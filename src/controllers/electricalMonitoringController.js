@@ -59,14 +59,14 @@ export const getHighestData = async (request, response) => {
                 'returnAs': returnAs,
                 'value': data
             }})
-        } 
+        }
         const data = electricDataQueryObj.getHighestObjByKey(key);
         return successResponse({response, data: {
             'keys': key,
             'returnAs': returnAs,
             'value': data
         }})
-        
+
     } catch(error) {
         return failResponse({response, data: error})
     }
@@ -85,14 +85,14 @@ export const getLowestData = async (request, response) => {
                 'returnAs': returnAs,
                 'value': data
             }})
-        } 
+        }
         const data = electricDataQueryObj.getLowestObjByKey(key);
         return successResponse({response, data: {
             'keys': key,
             'returnAs': returnAs,
             'value': data
         }})
-        
+
     } catch(error) {
         return failResponse({response, data: error})
     }
